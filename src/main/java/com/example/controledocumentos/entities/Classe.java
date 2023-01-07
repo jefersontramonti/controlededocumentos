@@ -1,13 +1,19 @@
 package com.example.controledocumentos.entities;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 //essa classe cria Classe: termoformadora, extrusora
+@Entity
+@Table(name = "tb_classe")
 public class Classe implements Serializable {
 
-   private Long id;
-   private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 
     public Classe() {
     }
