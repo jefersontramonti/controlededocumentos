@@ -1,11 +1,13 @@
 package com.example.controledocumentos.services;
 
+import com.example.controledocumentos.dto.ClasseDTO;
 import com.example.controledocumentos.entities.Classe;
 import com.example.controledocumentos.repositories.ClasseRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClasseService {
@@ -17,8 +19,10 @@ public class ClasseService {
     }
 
     @Transactional(readOnly = true)
-    public List<Classe> findAll() {
-        return repository.findAll();
+    public List<ClasseDTO> findAll() {
+        List<Classe> list = repository.findAll();
+
+        return list.stream().map(classe -> new ClasseDTO(classe)).collect(Collectors.toList());
     }
 }
 

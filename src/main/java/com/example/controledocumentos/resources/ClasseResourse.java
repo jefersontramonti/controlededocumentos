@@ -1,5 +1,6 @@
 package com.example.controledocumentos.resources;
 
+import com.example.controledocumentos.dto.ClasseDTO;
 import com.example.controledocumentos.entities.Classe;
 import com.example.controledocumentos.services.ClasseService;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class ClasseResourse {
     }
 
     @GetMapping
-    public ResponseEntity<List<Classe>> findAll() {
-        List<Classe> list = service.findAll();
+    public ResponseEntity<List<ClasseDTO>> findAll() {
+        List<ClasseDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
