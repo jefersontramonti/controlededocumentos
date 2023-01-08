@@ -3,6 +3,7 @@ package com.example.controledocumentos.services;
 import com.example.controledocumentos.entities.Classe;
 import com.example.controledocumentos.repositories.ClasseRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,7 +16,10 @@ public class ClasseService {
         this.repository = repository;
     }
 
-    public List<Classe> findAll(){
+    @Transactional(readOnly = true)
+    public List<Classe> findAll() {
         return repository.findAll();
     }
 }
+
+
