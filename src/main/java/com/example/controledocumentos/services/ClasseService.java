@@ -22,8 +22,18 @@ public class ClasseService {
     public List<ClasseDTO> findAll() {
         List<Classe> list = repository.findAll();
 
-        return list.stream().map(classe -> new ClasseDTO(classe)).collect(Collectors.toList());
+        return list.stream().map(ClasseDTO::new).collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public ClasseDTO findById(Long id) {
+        Classe classe = repository.findById(id).orElse(null);
+        if (classe != null) {
+            return new ClasseDTO(classe);
+        }
+        return null;
+    }
+
 }
 
 
