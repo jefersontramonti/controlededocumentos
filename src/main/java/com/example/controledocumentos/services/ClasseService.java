@@ -3,6 +3,7 @@ package com.example.controledocumentos.services;
 import com.example.controledocumentos.dto.ClasseDTO;
 import com.example.controledocumentos.entities.Classe;
 import com.example.controledocumentos.repositories.ClasseRepository;
+import com.example.controledocumentos.services.exceptions.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,12 +28,32 @@ public class ClasseService {
 
     @Transactional(readOnly = true)
     public ClasseDTO findById(Long id) {
-        Classe classe = repository.findById(id).orElse(null);
-        if (classe != null) {
-            return new ClasseDTO(classe);
-        }
-        return null;
+        Classe classe = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+        return new ClasseDTO(classe);
     }
+
+
+    @Transactional
+    public ClasseDTO insert(ClasseDTO dto) {
+        Classe classe = repository.saveAndFlush(new Classe(dto.getName()));
+        return new ClasseDTO(classe);
+    }
+
+
+    @Transactional
+    public ClasseDTO update(Long id, ClasseDTO dto) {
+        Classe classe = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+        classe.setName(dto.getName());
+        classe = repository.save(classe);
+        dto.setId(classe.getId());
+        return dto;
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
 
 }
 
