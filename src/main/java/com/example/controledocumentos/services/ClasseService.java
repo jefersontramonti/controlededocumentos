@@ -3,8 +3,10 @@ package com.example.controledocumentos.services;
 import com.example.controledocumentos.dto.ClasseDTO;
 import com.example.controledocumentos.entities.Classe;
 import com.example.controledocumentos.repositories.ClasseRepository;
+import com.example.controledocumentos.services.exceptions.DataIntegrityException;
 import com.example.controledocumentos.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,14 +54,19 @@ public class ClasseService {
         }
     }
 
-    @Transactional
-    public void delete(Long id) {
-        if (repository.findById(id).isEmpty()) {
-            throw new ResourceNotFoundException("Entidade não encontrada");
-        }
-        repository.deleteById(id);
-    }
 
+    @Transactional
+    public boolean delete(Long id) {
+        try {
+            return repository.findById(id)
+                    .map(classe -> {
+                        repository.delete(classe);
+                        return true;
+                    }).orElse(false);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Violação de Integridade");
+        }
+    }
 
 }
 

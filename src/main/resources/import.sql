@@ -1,6 +1,6 @@
-INSERT INTO tb_classe(name) VALUES ('FACILITADOR DE EXTRUSORA');
-INSERT INTO tb_classe(name) VALUES ('FACILITADOR DE TERMOFORMADORA');
-INSERT INTO tb_classe(name) VALUES ('OPERADORA DE MAQUINA');
-INSERT INTO tb_classe(name) VALUES ('LIDER DE EQUIPE');
-INSERT INTO tb_classe(name) VALUES ('MECÂNICO');
-INSERT INTO tb_classe(name) VALUES ('ELETRICISTA');
+INSERT INTO tb_classe(name, created_At) VALUES ('FACILITADOR DE EXTRUSORA', NOW());
+INSERT INTO tb_classe(name, created_At) VALUES ('FACILITADOR DE TERMOFORMADORA', NOW());
+INSERT INTO tb_classe(name, created_At) VALUES ('OPERADORA DE MAQUINA', NOW());
+INSERT INTO tb_classe(name, created_At) VALUES ('LIDER DE EQUIPE', NOW());
+INSERT INTO tb_classe(name, created_At) VALUES ('MECÂNICO', NOW());
+INSERT INTO tb_classe(name, created_At) VALUES ('ELETRICISTA', NOW());
