@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 //essa classe cria Classe: termoformadora, extrusora
@@ -33,6 +35,14 @@ public class Category implements Serializable {
     public void preUpdate() {
         updatedAt = Instant.now();
     }
+
+    @ManyToMany(mappedBy = "categories")
+    private Set<Specification> specifications = new HashSet<>();
+
+    public Set<Specification> getSpecifications() {
+        return specifications;
+    }
+
 
 
     public Category() {
