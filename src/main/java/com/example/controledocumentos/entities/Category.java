@@ -5,15 +5,14 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 
 //essa classe cria Classe: termoformadora, extrusora
 
 @Entity
-@Table(name = "tb_classe")
-public class Classe implements Serializable {
+@Table(name = "tb_category")
+public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,15 +35,15 @@ public class Classe implements Serializable {
     }
 
 
-    public Classe() {
+    public Category() {
     }
 
-    public Classe(Long id, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Classe(String name) {
+    public Category(String name) {
         this.name = name;
     }
 
@@ -77,8 +76,8 @@ public class Classe implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Classe classe)) return false;
-        return getId().equals(classe.getId());
+        if (!(o instanceof Category category)) return false;
+        return getId().equals(category.getId());
     }
 
     @Override

@@ -1,24 +1,24 @@
 package com.example.controledocumentos.dto;
 
-import com.example.controledocumentos.entities.Classe;
+import com.example.controledocumentos.entities.Category;
 
 import java.io.Serializable;
 
 
-public class ClasseDTO implements Serializable {
+public class CategoryDTO implements Serializable {
     private Long id;
     private String name;
 
 
-    public ClasseDTO() {
+    public CategoryDTO() {
     }
 
-    public ClasseDTO(Long id, String name) {
+    public CategoryDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public ClasseDTO(Classe entity) {
+    public CategoryDTO(Category entity) {
         this.id = entity.getId();
         this.name = entity.getName();
     }
